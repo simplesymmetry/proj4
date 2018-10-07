@@ -18,16 +18,19 @@
 
 int main(int argc, char *argv[]) {
     size_t bufferSize = 1024;
-    int mmapMode;
+    int mmapMode = 0;
+    size_t input = (size_t) atoi(argv[3]);
 
-    if (argc == 4){
+    if (input){
+        bufferSize = input;
+        mmapMode = 0;
+    }else {
         mmapMode = 1;
     }
 
     if (argc == 5){
-        bufferSize = (size_t) argv[3];
+        bufferSize = atoi(argv[4]);
         if (bufferSize >= 8912){
-            std::cout << "Buffer size too large, defaulting to 1024 bytes.\n" << std::endl;
             bufferSize = 1024;
         }
         mmapMode = 1;
@@ -47,10 +50,6 @@ int main(int argc, char *argv[]) {
 
     if (argc < 3) {
         std::cerr << "Usage: " << argv[0] << std::endl;
-    }
-
-    if (fstat(fd, &sb) < 0){
-        std::cerr << "Could not stat" << std::endl;
     }
     else if ((fd = open(filename, O_RDONLY)) < 0) {
         std::cerr << "Cannot open: " << filename << std::endl;
@@ -78,13 +77,13 @@ int main(int argc, char *argv[]) {
 
     if (mmapMode) {
         if (fstat(fd, &sb) < 0) {
-            std::cerr << "Could not stat." <<  std::endl;
+            std::cerr << "Mmap Mode: Could not stat." <<  std::endl;
             exit(1);
         } else if ((pch = (char *) mmap(NULL, sb.st_size, PROT_READ, MAP_SHARED, fd, 0)) == (char *) -1) {
-            std::cerr << "Could not map file to memory." << std::endl;
+            std::cerr << "Mmap Mode: Could not map file to memory." << std::endl;
             exit(1);
         }
-        while ((pch = (char *) mmap(NULL, sb.st_size, PROT_READ, MAP_SHARED, fd, 0)) == (char *) -1){
+        while ((pch = (char *) mmap(nullptr, sb.st_size, PROT_READ, MAP_SHARED, fd, 0)) == (char *) -1){
             for (pos = 0; pos < bufferSize; pos++) {
                 if (searchString[i] == buffer[pos]) {
                     i++;
@@ -95,16 +94,17 @@ int main(int argc, char *argv[]) {
                 }
             }
         }
-
         if (munmap(pch, sb.st_size) < 0) {
-            std::cerr << "Could not unmap memory" << std::endl;
+            std::cerr << "Mmap Mode: Could not unmap memory" << std::endl;
             exit(1);
         }
     }
-
-    std::cout << "Occurrences of the string \"" << searchString << "\" in " << filename << " is " << result << "." << std::endl;
+    std::cout << "Occurrences of the string " << searchString << " in " << filename << " is " << result << "." << std::endl;
     std::cout << "Size of the file is " << sb.st_size << " bytes. " << std::endl;
-
+    std::cout << "Buffer size is " << bufferSize << " bytes. " << std::endl;
+    if (mmapMode){
+        std::cout << "Mmap Mode btw" << std::endl;
+    }
     if (fd > 0) {
         close(fd);
     }

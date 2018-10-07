@@ -6,3 +6,29 @@
 
 #IncludeRegexTransform: 
 
+/Users/tom/CLionProjects/proj4/main.cpp
+iostream
+-
+unistd.h
+-
+errno.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+errno.h
+-
+sys/types.h
+-
+sys/stat.h
+-
+sys/mman.h
+-
+unistd.h
+-
+fcntl.h
+-
+
