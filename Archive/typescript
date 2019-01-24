@@ -1,0 +1,52 @@
+Script started on Thu 11 Oct 2018 10:10:47 AM EDT
+bash-3.2$ ls
+My_Documents  proj4.cpp  public_html  typescript
+bash-3.2$ hostname        whoaim  mi
+tgraham
+bash-3.2$ hostname
+CCCWORK3.WPI.EDU
+bash-3.2$ hostname[2Pwhoami[4Plsexitg++ proj4.cpp 
+bash-3.2$ ./a.out a.out test  
+File size: 15786 bytes. 
+Occurrences of the string test in a.out is 42.
+Buffer size is 1024 bytes. 
+bash-3.2$ ./a.out a.out test 2048
+File size: 15786 bytes. 
+Occurrences of the string test in a.out is 38.
+Buffer size is 2048 bytes. 
+bash-3.2$ ./a.out a.out test 2048    4096
+File size: 15786 bytes. 
+Occurrences of the string test in a.out is 36.
+Buffer size is 4096 bytes. 
+bash-3.2$ ./a.out a.out test 4096    mmap 
+File size: 15786 bytes. 
+Occurrences of the string test in a.out is 42.
+Buffer size is 1024 bytes. 
+Mmap Mode is on.
+bash-3.2$ ./a.out a.out test mmap 2048
+File size: 15786 bytes. 
+Occurrences of the string test in a.out is 38.
+Buffer size is 2048 bytes. 
+Mmap Mode is on.
+bash-3.2$ ./a.out a.out test mmap 2048    4096
+File size: 15786 bytes. 
+Occurrences of the string test in a.out is 36.
+Buffer size is 4096 bytes. 
+Mmap Mode is on.
+bash-3.2$ ./a.out a.out test mmap 4096                            exit    ./a.out a.out test mmap 2048[1P[1P[1P[1P[1@a[1@n[1@o[1@t[1@h[1@e[1@r[1@S[1@t[1@r[1@i[1@n[1@g
+File size: 15786 bytes. 
+Occurrences of the string anotherString in a.out is 3.
+Buffer size is 2048 bytes. 
+Mmap Mode is on.
+bash-3.2$ ./a.out a.out anotherString mmap 2048 mmap 2048m[1P[1P[1P[1P[1P
+File size: 15786 bytes. 
+Occurrences of the string anotherString in a.out is 3.
+Buffer size is 2048 bytes. 
+bash-3.2$ ./a.out a.out anotherString 2048[1P[1P[1P8[K8192
+File size: 15786 bytes. 
+Occurrences of the string anotherString in a.out is 3.
+Buffer size is 8192 bytes. 
+bash-3.2$ exit
+exit
+
+Script done on Thu 11 Oct 2018 10:12:39 AM EDT
